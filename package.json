@@ -2,10 +2,10 @@
   "name": "test-platformasi",
   "version": "1.0.0",
   "description": "Test platformasi - Desktop va Android uchun o'rnatiladigan (PWA) test dasturi",
-  "main": "server/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "test": "node server/selftest.js"
+    "start": "node index.js",
+    "test": "node selftest.js"
   },
   "engines": { "node": "22.x" },
   "dependencies": {

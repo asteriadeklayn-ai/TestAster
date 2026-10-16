@@ -470,13 +470,14 @@ const wrap = (fn) => (req, res, next) => Promise.resolve(fn(req, res, next)).cat
 
   // =================== statik fayllar (PWA) ===================
   app.use('/api', (req, res) => res.status(404).json({ error: 'Topilmadi' }));
-  app.use(express.static(path.join(__dirname, '..', 'public'), {
-    setHeaders: (res, file) => {
-      if (file.endsWith('sw.js')) res.set('Cache-Control', 'no-cache');
-      if (file.endsWith('.webmanifest')) res.set('Content-Type', 'application/manifest+json');
-    },
-  }));
-  app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
+  const PUBLIC_FILES = new Set(['app.js', 'styles.css', 'sw.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'maskable-512.png', 'apple-touch-icon.png', 'favicon.png']);
+  app.get('/:file', (req, res, next) => {
+    if (!PUBLIC_FILES.has(req.params.file)) return next();
+    if (req.params.file === 'sw.js') res.set('Cache-Control', 'no-cache');
+    if (req.params.file.endsWith('.webmanifest')) res.set('Content-Type', 'application/manifest+json');
+    res.sendFile(path.join(__dirname, req.params.file));
+  });
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
   app.use((err, req, res, next) => { // eslint-disable-line
     if (err instanceof multer.MulterError) return res.status(400).json({ error: err.code === 'LIMIT_FILE_SIZE' ? 'Fayl juda katta (15 MB gacha)' : err.message });

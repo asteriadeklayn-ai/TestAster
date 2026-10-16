@@ -155,7 +155,7 @@ function renderShell() {
   $('#app').innerHTML = `
   <div class="shell">
     <aside class="side">
-      <div class="brand"><img src="/icons/icon-192.png" alt="">Test platformasi</div>
+      <div class="brand"><img src="/icon-192.png" alt="">Test platformasi</div>
       <nav class="nav">${navItems().map(([h, t, i]) => `<a href="#/${h}" data-r="${h}">${icon(i)}<span>${t}</span></a>`).join('')}</nav>
       ${installBtn('sm install-btn')}
       <div class="who"><b>${esc(S.user.fullName)}</b><span class="muted">${S.user.role === 'admin' ? 'Administrator' : 'Foydalanuvchi'}</span></div>

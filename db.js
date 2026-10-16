@@ -101,7 +101,7 @@ async function createStore() {
   }
   // Railway'da Volume ulangan bo'lsa, ma'lumotlar o'sha yerda saqlanadi (qayta ishga tushganda yo'qolmaydi)
   const vol = process.env.RAILWAY_VOLUME_MOUNT_PATH;
-  const file = process.env.DATA_FILE || (vol ? path.join(vol, 'db.json') : path.join(__dirname, '..', 'data', 'db.json'));
+  const file = process.env.DATA_FILE || (vol ? path.join(vol, 'db.json') : path.join(__dirname, 'data.json'));
   console.log('Ombor: fayl (' + file + ')');
   return new FileStore(file);
 }

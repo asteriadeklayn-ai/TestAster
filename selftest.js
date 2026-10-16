@@ -121,7 +121,7 @@ async function call(p, { method = 'GET', body, token, form } = {}) {
     // PWA fayllar
     const man = await fetch(BASE + '/manifest.webmanifest');
     ok(man.ok && (await man.json()).display === 'standalone', 'manifest mavjud');
-    ok((await fetch(BASE + '/sw.js')).ok && (await fetch(BASE + '/icons/icon-512.png')).ok, 'service worker va ikonkalar mavjud');
+    ok((await fetch(BASE + '/sw.js')).ok && (await fetch(BASE + '/icon-512.png')).ok, 'service worker va ikonkalar mavjud');
   } catch (e) {
     console.error(e); fails++;
   }

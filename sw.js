@@ -1,6 +1,6 @@
 // Ilova qobig'ini keshlaydi (tez ochilishi va o'rnatish uchun). Ma'lumotlar (API) har doim serverdan olinadi.
 const CACHE = 'test-platformasi-v4';
-const SHELL = ['/', '/styles.css', '/app.js', '/manifest.webmanifest', '/icons/icon-192.png', '/icons/icon-512.png'];
+const SHELL = ['/', '/styles.css', '/app.js', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
