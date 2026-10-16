@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: test-platformasi
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: SECRET
+        generateValue: true
